@@ -1,0 +1,85 @@
+\documentclass{article}
+
+\usepackage[a4paper, margin=2cm]{geometry}
+\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\begin{document}
+\pagestyle{empty}
+
+
+% Define block styles
+\tikzstyle{startstop} = [rectangle, rounded corners, 
+minimum width=3cm, 
+minimum height=1cm,
+text centered, 
+draw=black, 
+fill=red!30]
+
+\tikzstyle{io} = [trapezium, 
+trapezium stretches=true, % A later addition
+trapezium left angle=70, 
+trapezium right angle=110, 
+minimum width=3cm, 
+minimum height=1cm, text centered, 
+draw=black, fill=blue!30]
+
+\tikzstyle{process} = [rectangle, 
+minimum width=3cm, 
+minimum height=1cm, 
+text centered, 
+text width=3cm, 
+draw=black, 
+fill=orange!30]
+
+\tikzstyle{decision} = [circle, 
+minimum width=3cm, 
+minimum height=1cm, 
+text centered, 
+draw=black, 
+fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\section*{Phrasal Verb Chart}
+
+Look at your term in question. Determine if there is an object or pronoun present. Follow the chart to determine if it is separable or transitive.
+
+\subsection*{License}
+Phrasal Verb Chart \textcopyright  2024 by Dennis Russell Bovell is licensed under Creative Commons Zero v1.0 Universal
+
+\begin{figure}[!ht]
+  \centering
+  \begin{tikzpicture}[node distance = 2cm]
+    % nodes
+    \node [startstop, anchor=west] (vp) {\Large verb + particle};
+    \node [startstop, below of=vp, yshift=-3cm] (vpo) {\Large verb + particle + object};
+    \node [startstop, below of=vpo, yshift=-3cm] (vop) {\Large verb + object + particle};
+    \node [startstop, below of=vop, yshift=-3cm] (vrp) {\Large verb + pronoun + particle};
+    
+    \node [process, right of=vp, xshift=3cm] (insep) {\Large inseparable};
+    \node [decision, right of=insep, xshift=3cm] (intrans) {\Large intransitive};
+
+
+    \node [process, right of=vpo, xshift=3cm] (insepo) {\Large possibly inseparable, used as such};
+    \node [process, right of=vop, xshift=3cm] (sepo) {\Large separable};
+    \node [process, right of=vrp, xshift=3cm] (asepo) {\Large always separable};
+    \node [decision, right of=vop, xshift=8cm] (transo) {\Large transitive};
+    
+    % edges
+    \draw [arrow] (vp) -- (insep);
+    \draw [arrow] (insep) -- (intrans);
+
+    \draw [arrow] (vpo) -- (insepo);
+    \draw [arrow] (vop) -- (sepo);
+
+    \draw [arrow] (vrp) -- (asepo);
+    \draw [arrow] (asepo) -| (transo);
+    
+    \draw [arrow] (sepo) -- (transo);
+    \draw [arrow] (insepo) -| (transo);
+    
+    
+  \end{tikzpicture}
+\end{figure}
+
+\end{document}
